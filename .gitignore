@@ -1,3 +1,26 @@
-/__pycache__/
+# OS / editor
 .DS_Store
 .ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Figures
+Figs/
+
+# Generated target files
+TargetFiles/
+TargetFiles_*/
+*.tgt
+
+# Raw experiment recordings
+*.dat
+*.mov
+
+# Processed tables and named data folders
+*_miscs/
+cad_spat_vis1/
+Index_Ring_Flx_Ext/
+Single_Finger_Gain_Generalization/
+Single_Finger_Gain_Generalization_V2/
