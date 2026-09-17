@@ -18,6 +18,9 @@ TargetFiles_*/
 *.dat
 *.mov
 
+# Committee report (private deliverable, not for git)
+CommitteeReport/
+
 # Processed tables and named data folders
 *_miscs/
 cad_spat_vis1/
