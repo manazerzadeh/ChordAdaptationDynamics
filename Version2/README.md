@@ -1,6 +1,6 @@
 # Version 2 — index/ring chords with cursor perturbation
 
-**Question.** How do self- and cross-finger learning rates (matrix **B**) depend on one- vs two-finger chords
+**Question.** How do self- and cross-finger learning rates (matrix **B**) depend on one- vs two-finger chords?
 
 ## Task
 
@@ -39,16 +39,18 @@ Per condition, three block types in sequence (**8 conditions × 3 = 24**):
 
 State-space model on **deviations from target** (see `make_estimation_schematic.py` and `LearningDynamicsAnalysis.ipynb`):
 
-- X_t = Z_t + \varepsilon_t + p_t
+- $X_t = Z_t + \varepsilon_t + p_t$
 - Implemented Method A (fingers 2 and 4, `purturbation1/2`):
 
 
-B = -\bigl(I + \mathrm{cov}(\Delta X, P)\mathrm{var}(P)^{-1}\bigr)
+$$
+B = -\bigl(I + \mathrm{cov}(\Delta X, P)\,\mathrm{var}(P)^{-1}\bigr)
+$$
 
 
-Comment blocks in the notebook are not all consistent about the sign of B; the **implemented** Method A uses the formula above.
+Comment blocks in the notebook are not all consistent about the sign of $B$; the **implemented** Method A uses the formula above.
 
-- **Method B:** Nelder–Mead MLE; diagonal **A**, full **B**; forward simulation Z_{t+1} = A Z_t - B_{\mathrm{mask}} X_t.
+- **Method B:** Nelder–Mead MLE; diagonal **A**, full **B**; forward simulation $Z_{t+1} = A Z_t - B_{\mathrm{mask}} X_t$.
 
 Chord types used in plots: `one_finger`, `symmetric` (same flex/ext sign), `asymmetric`.
 

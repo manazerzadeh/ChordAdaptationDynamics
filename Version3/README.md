@@ -23,15 +23,15 @@ From `TargetFileMaker.ipynb` / `utils.py`:
 
 Deviations from target:
 
-- X_t = Z_t + \nu_t (produced: `endForce − target`)
-- Y_t = X_t + p_t (perturbed: `endForcePurturbed − target`)
+- $X_t = Z_t + \nu_t$ (produced: `endForce − target`)
+- $Y_t = X_t + p_t$ (perturbed: `endForcePurturbed − target`)
 
 
 | Method | As coded                                                                                                                                                            |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **A**  | B = -\mathrm{cov}(X_{t+1}, p_t)\mathrm{var}(p_t)^{-1} (lag-1 produced force). An older commented form used \Delta Y.                                                |
-| **B**  | Nelder–Mead; Z_{t+1} = A Z_t - B Y_t; minimize \sum\nu_t^2. Diagonal **A** in [0.9, 1], full **B**, free Z_0. Feeding \nu_t into the regressor can **attenuate** B. |
-| **C**  | Same fit as B, but Z_{t+1} = A Z_t - B(Z_t + p_t) (measurement noise not in the learning update).                                                                   |
+| **A**  | $B = -\mathrm{cov}(X_{t+1}, p_t)\,\mathrm{var}(p_t)^{-1}$ (lag-1 produced force). An older commented form used $\Delta Y$.                                                |
+| **B**  | Nelder–Mead; $Z_{t+1} = A Z_t - B Y_t$; minimize $\sum \nu_t^2$. Diagonal **A** in [0.9, 1], full **B**, free $Z_0$. Feeding $\nu_t$ into the regressor can **attenuate** B. |
+| **C**  | Same fit as B, but $Z_{t+1} = A Z_t - B(Z_t + p_t)$ (measurement noise not in the learning update).                                                                   |
 | **D**  | Kalman MLE of a C-like model with process noise.                                                                                                                    |
 
 
@@ -46,9 +46,9 @@ Deviations from target:
 | `DatPreProcessing.ipynb`       | `.dat` → chord, block type, day, `trial_num_within_chord` → `subjs.csv`                                                                                                                      |
 | `ForcePreProcessing.ipynb`     | `.mov` (handles null bytes / corrupt lines), smooth, average force → `subjs_force_train.csv`                                                                                                 |
 | `ForceScalingProcessing.ipynb` | Trajectory scaling: window **2200–2925 ms** (go cue 2400, sample 2900), smooth window **25**; terciles of end force; dF/dt ratios. Flexion labels reversed so “high” is strongest production |
-| `SwitchingAnalysis.ipynb`      | Parallel attenuation vs winner-take-all switching. Perturbation angle \varphi = \arctan(                                                                                                     |
+| `SwitchingAnalysis.ipynb`      | Parallel attenuation vs winner-take-all switching. Perturbation angle $\varphi = \arctan(\lvert p_2 \rvert / \lvert p_1 \rvert)$; thirds $[0,\pi/6)$, $[\pi/6,\pi/3)$, $[\pi/3,\pi/2]$. Simulations use $p \sim \mathcal{N}(0, 0.5)$. Single-finger Method A self-LR cited ≈ 0.26 vs two-finger ≈ 0.18–0.21 |
 | `SwitchingAnalysisGain.ipynb`  | Same hypotheses in independent-gain coordinates                                                                                                                                              |
-| `ControllerAnalysis.ipynb`     | Single / independent / independent+common **gain** controllers. Gain Method A uses X_t = T Z_t + \varepsilon_t with T from `targetForce2/4`                                                  |
+| `ControllerAnalysis.ipynb`     | Single / independent / independent+common **gain** controllers. Gain Method A uses $X_t = T Z_t + \varepsilon_t$ with $T$ from `targetForce2/4`                                                  |
 | `AutoCovAnalysis.ipynb`        | Lagged autocovariance of end forces, unperturbed and perturbed; lags 0…4. Header still mentions `num_sessions = 3` in places; design is 4 sessions                                           |
 | `utils.py`                     | Paths, design constants, chord / `chord_type` helpers                                                                                                                                        |
 

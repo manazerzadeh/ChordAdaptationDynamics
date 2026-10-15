@@ -5,7 +5,7 @@
 ## Task
 
 - Finger: **index** (`finger = 2`).
-- Extents in **code,** `utils.py`**,** `.dat`**, and** `TargetFiles`**:** `[-4, -2, 2, 4]` N.
+- Extents: `[-4, -2, 2, 4]` N.
 
 
 
@@ -35,14 +35,14 @@ forceError    = (endForce - targetForce) / gain
 
 ## Block labels (`utils.add_block_type`)
 
-Repeats every 3 BN: `{1: washout, 2: adaptation, 3: test}`. `cycle = ((BN - 1) // 3) + 1`. `adaptation_condition` is the condition on that cycle’s adaptation trials, merged onto every trial in the cycle.
+Repeats every 3 BN: `{1: washout, 2: adaptation, 3: test}` — the baseline block is labelled `washout` in the code. `cycle = ((BN - 1) // 3) + 1`. `adaptation_condition` is the condition on that cycle’s adaptation trials, merged onto every trial in the cycle.
 
 ## Aftereffect (`LearningDynamicsAnalysis.ipynb`)
 
 Within `subNum × adaptation_condition × condition`:
 
 ```
-test_minus_washout = mean(producedForce2 | Test) − mean(producedForce2 | baseline)
+test_minus_washout = mean(producedForce2 | Test) − mean(producedForce2 | Baseline)
 ```
 
 ## Files

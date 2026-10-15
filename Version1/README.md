@@ -4,7 +4,7 @@ Two protocols share this folder.
 
 ## Single-finger gain adaptation
 
-**Question.** Dynamics of adpating to **forceGain change** on a single finger. Estimating learning rate and retention.
+**Question.** Dynamics of adapting to **forceGain change** on a single finger. Estimating learning rate and retention.
 
 **Task.** Each digit (1–5) in turn; target **−3 N** flexion (`TargetFileMaker_single_flexion.ipynb`). Other fingers at 0 N.
 
@@ -25,19 +25,21 @@ The `.tgt` files do **not** store `forceGain`. Gains in collected `.dat` files a
 
 **Question.** How do self- and cross-finger learning rates depend on **chord size** (1–5 fingers) when each active finger gets independent cursor noise?
 
-**Task.** All 31 nonempty subsets of the five fingers. Active fingers flex at **−2 N** (`TargetFileMaker.ipynb`). random cursor perturbation with zero mean and  **σ ≈ 0.5 N**. One chord per block, **30 trials**.
+**Task.** All 31 nonempty subsets of the five fingers. Active fingers flex at **−2 N** (`TargetFileMaker.ipynb`). Random cursor perturbation with zero mean and **σ ≈ 0.5 N**. One chord per block, **30 trials**.
 
 `utils_multi.py`: same timing as single-finger; `num_blocks_per_session = 31`; `num_trials_per_block = 30`; `total_sub_num = 20` (planned). The target-file maker uses `total_sub_num = 2`. `forceGain` is 1. There is no baseline / washout / no-feedback structure in the multi `.tgt` maker.
 
 **Data.** `cad_spat_vis1/Multi_Finger/` with the same `cad_spat_vis1_<sub>.dat` / `.mov` naming. Processed table: `cad_spat_vis1_miscs/Multi_Finger/subjs.csv`. Targets: `TargetFiles_Multi_Finger/sn<sub>_<BN>.tgt`.
 
-**Learning-rate comments in** `LearningDynamicsAnalysis_multi.ipynb`**.** With X = `endForcePurturbed` and P = per-finger perturbation (`endForcePurturbed − endForce`):
+**Learning-rate comments in** `LearningDynamicsAnalysis_multi.ipynb`**.** With $X$ = `endForcePurturbed` and $P$ = per-finger perturbation (`endForcePurturbed − endForce`):
 
 
-A = I + \mathrm{cov}(\Delta X, P)\mathrm{var}(P)^{-1}
+$$
+A = I + \mathrm{cov}(\Delta X, P)\,\mathrm{var}(P)^{-1}
+$$
 
 
-Inactive fingers (target 0) are zeroed in the relevant columns of A / \Delta X.
+Inactive fingers (target 0) are zeroed in the relevant columns of $A$ / $\Delta X$.
 
 ## Files
 
@@ -50,7 +52,7 @@ Inactive fingers (target 0) are zeroed in the relevant columns of A / \Delta X.
 | `DatPreProcessing_multi.ipynb`         | Multi-finger `.dat` → `subjs.csv` (perturbation, `num_targets`)         |
 | `ForcePreProcessing.ipynb`             | Continuous `.mov` force; uses `utils.path` (single-finger).             |
 | `LearningDynamicsAnalysis.ipynb`       | Single-finger force vs gain;                                            |
-| `LearningDynamicsAnalysis_multi.ipynb` | Multi-finger learning matrix A                                          |
+| `LearningDynamicsAnalysis_multi.ipynb` | Multi-finger learning matrix $A$                                         |
 | `utils.py` / `utils_multi.py`          | Paths, timing, I/O, error filters, figure style                         |
 
 
